@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="34"
-  DTS:VersionGUID="{B0664A9B-B8F9-4015-8CA0-94C37A6A53FF}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{5D6E8033-1943-4A53-9FAD-7516D5D8CEE8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2111,7 +2111,9 @@ FROM Empleado</property>
                   description="The SQL command to be executed."
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT CONVERT (DATE,RequiredDate) AS FechaNecesario, CONVERT (DATE,ShippedDate) AS FechaEnviada, Freight, DATEDIFF (DAY, ShippedDate , RequiredDate ) AS DiasRetraso
-FROM Orden</property>
+FROM Orden
+WHERE  DATEDIFF (DAY, ShippedDate , RequiredDate ) IS NOT NULL
+AND CONVERT (DATE,ShippedDate) IS NOT NULL</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -7446,7 +7448,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
     design-time-name="Package\ETL Pedidos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="170.666666666667,42"
           Id="Package\ETL Pedidos\OLE DB Destination"
@@ -7490,9 +7492,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7526,9 +7526,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
