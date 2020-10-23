@@ -11,11 +11,31 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="29"
-  DTS:VersionGUID="{EC4228AB-5698-4870-AF71-458953B8A45C}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{B0664A9B-B8F9-4015-8CA0-94C37A6A53FF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CC4CD3BA-C422-4C0D-B6FC-1EEEEB686769}"
+      DTS:ObjectName="DESKTOP-JLOV2OI.DMNorthwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JLOV2OI;Initial Catalog=DMNorthwind;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2DB4376E-7B05-4FAA-86DC-8EFF8F5512A7}"
+      DTS:ObjectName="DESKTOP-JLOV2OI.Northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JLOV2OI;Initial Catalog=Northwind;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
       DTS:CreationName="OLEDB"
@@ -107,18 +127,6 @@
                       cachedLength="24"
                       cachedName="Phone"
                       lineageId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]" />
-                    <inputColumn
-                      refId="Package\ETL Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[Fax]"
-                      cachedDataType="wstr"
-                      cachedLength="24"
-                      cachedName="Fax"
-                      lineageId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fax]" />
-                    <inputColumn
-                      refId="Package\ETL Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[Region]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="Region"
-                      lineageId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Region]" />
                     <inputColumn
                       refId="Package\ETL Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[PostalCode]"
                       cachedDataType="wstr"
@@ -291,50 +299,6 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\ETL Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Fax]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="20"
-                      lineageId="Package\ETL Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Fax]"
-                      name="Copy of Fax"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fax]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Region]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="20"
-                      lineageId="Package\ETL Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Region]"
-                      name="Copy of Region"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Region]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\ETL Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PostalCode]"
                       codePage="1252"
                       dataType="str"
@@ -429,7 +393,7 @@
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">true</property>
+                  name="FastLoadKeepNulls">false</property>
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
@@ -442,8 +406,8 @@
               <connections>
                 <connection
                   refId="Package\ETL Clientes\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -512,22 +476,6 @@
                       externalMetadataColumnId="Package\ETL Clientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CLI_PHONE]"
                       lineageId="Package\ETL Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Phone]" />
                     <inputColumn
-                      refId="Package\ETL Clientes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Fax]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="Copy of Fax"
-                      externalMetadataColumnId="Package\ETL Clientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CLI_FAX]"
-                      lineageId="Package\ETL Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Fax]" />
-                    <inputColumn
-                      refId="Package\ETL Clientes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Region]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="Copy of Region"
-                      externalMetadataColumnId="Package\ETL Clientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CLI_REGION]"
-                      lineageId="Package\ETL Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Region]" />
-                    <inputColumn
                       refId="Package\ETL Clientes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of PostalCode]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -584,18 +532,6 @@
                       dataType="str"
                       length="20"
                       name="CLI_PHONE" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Clientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CLI_FAX]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="CLI_FAX" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Clientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CLI_REGION]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="CLI_REGION" />
                     <externalMetadataColumn
                       refId="Package\ETL Clientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CLI_CODIGOPOSTAL]"
                       codePage="1252"
@@ -655,8 +591,9 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT ContactName, City, Country, ContactTitle, CompanyName, [Address], Phone, Fax, Region, PostalCode
-FROM Cliente</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT ContactName, City, Country, ContactTitle, CompanyName, [Address], Phone, PostalCode
+FROM Cliente
+WHERE PostalCode IS NOT NULL</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -682,8 +619,8 @@ FROM Cliente</property>
               <connections>
                 <connection
                   refId="Package\ETL Clientes\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -763,26 +700,6 @@ FROM Cliente</property>
                       name="Phone"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fax]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Fax]"
-                      length="24"
-                      lineageId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fax]"
-                      name="Fax"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Region]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Region]"
-                      length="15"
-                      lineageId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Region]"
-                      name="Region"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].Columns[PostalCode]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -830,16 +747,6 @@ FROM Cliente</property>
                       dataType="wstr"
                       length="24"
                       name="Phone" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Fax]"
-                      dataType="wstr"
-                      length="24"
-                      name="Fax" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Region]"
-                      dataType="wstr"
-                      length="15"
-                      name="Region" />
                     <externalMetadataColumn
                       refId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
                       dataType="wstr"
@@ -894,18 +801,6 @@ FROM Cliente</property>
                       length="24"
                       lineageId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
                       name="Phone" />
-                    <outputColumn
-                      refId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Fax]"
-                      dataType="wstr"
-                      length="24"
-                      lineageId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Fax]"
-                      name="Fax" />
-                    <outputColumn
-                      refId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Region]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Region]"
-                      name="Region" />
                     <outputColumn
                       refId="Package\ETL Clientes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
                       dataType="wstr"
@@ -1366,8 +1261,8 @@ FROM Cliente</property>
               <connections>
                 <connection
                   refId="Package\ETL Empleados\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1607,8 +1502,8 @@ FROM Empleado</property>
               <connections>
                 <connection
                   refId="Package\ETL Empleados\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2102,8 +1997,8 @@ FROM Empleado</property>
               <connections>
                 <connection
                   refId="Package\ETL Pedidos\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2242,8 +2137,8 @@ FROM Orden</property>
               <connections>
                 <connection
                   refId="Package\ETL Pedidos\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2676,8 +2571,8 @@ FROM Orden</property>
               <connections>
                 <connection
                   refId="Package\ETL Producto\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2861,8 +2756,8 @@ INNER JOIN Categoria ON (Producto.categoriaID=Categoria.categoriaID)</property>
               <connections>
                 <connection
                   refId="Package\ETL Producto\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3475,8 +3370,8 @@ INNER JOIN Categoria ON (Producto.categoriaID=Categoria.categoriaID)</property>
               <connections>
                 <connection
                   refId="Package\ETL Proveedores\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3537,14 +3432,6 @@ INNER JOIN Categoria ON (Producto.categoriaID=Categoria.categoriaID)</property>
                       externalMetadataColumnId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROV_CIUDAD]"
                       lineageId="Package\ETL Proveedores\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ciudad]" />
                     <inputColumn
-                      refId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Region]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="Copy of Region"
-                      externalMetadataColumnId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROV_REGION]"
-                      lineageId="Package\ETL Proveedores\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Region]" />
-                    <inputColumn
                       refId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of codigoPostal]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -3560,21 +3447,6 @@ INNER JOIN Categoria ON (Producto.categoriaID=Categoria.categoriaID)</property>
                       cachedName="Copy of telefono"
                       externalMetadataColumnId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROV_TELEFONO]"
                       lineageId="Package\ETL Proveedores\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of telefono]" />
-                    <inputColumn
-                      refId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of fax]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="Copy of fax"
-                      externalMetadataColumnId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROV_FAX]"
-                      lineageId="Package\ETL Proveedores\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of fax]" />
-                    <inputColumn
-                      refId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of HomePage]"
-                      cachedCodepage="1252"
-                      cachedDataType="text"
-                      cachedName="Copy of HomePage"
-                      externalMetadataColumnId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROV_HOMEPAGE]"
-                      lineageId="Package\ETL Proveedores\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of HomePage]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3619,12 +3491,6 @@ INNER JOIN Categoria ON (Producto.categoriaID=Categoria.categoriaID)</property>
                       length="20"
                       name="PROV_CIUDAD" />
                     <externalMetadataColumn
-                      refId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROV_REGION]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="PROV_REGION" />
-                    <externalMetadataColumn
                       refId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROV_CODIGOPOSTAL]"
                       codePage="1252"
                       dataType="str"
@@ -3636,17 +3502,6 @@ INNER JOIN Categoria ON (Producto.categoriaID=Categoria.categoriaID)</property>
                       dataType="str"
                       length="20"
                       name="PROV_TELEFONO" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROV_FAX]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="PROV_FAX" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Proveedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROV_HOMEPAGE]"
-                      codePage="1252"
-                      dataType="text"
-                      name="PROV_HOMEPAGE" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3727,8 +3582,8 @@ FROM Proveedor</property>
               <connections>
                 <connection
                   refId="Package\ETL Proveedores\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4187,8 +4042,8 @@ FROM Proveedor</property>
               <connections>
                 <connection
                   refId="Package\ETL Territorio\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4317,8 +4172,8 @@ ON Region.RegionID = Territories.RegionID</property>
               <connections>
                 <connection
                   refId="Package\ETL Territorio\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4667,8 +4522,8 @@ ON Region.RegionID = Territories.RegionID</property>
               <connections>
                 <connection
                   refId="Package\ETL Tiempo\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4827,8 +4682,8 @@ FROM Orden</property>
               <connections>
                 <connection
                   refId="Package\ETL Tiempo\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5295,8 +5150,8 @@ FROM Orden</property>
               <connections>
                 <connection
                   refId="Package\ETL Transportes\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5469,7 +5324,8 @@ FROM Orden</property>
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  DISTINCT ShipCountry, ShipCity, ShipName, ShipPostalCode, ShipAddress, Phone, CompanyName
 FROM Shippers
 INNER JOIN Orden
-ON Orden.ShipVia = Shippers.ShipperID</property>
+ON Orden.ShipVia = Shippers.ShipperID
+WHERE ShipPostalCode IS NOT NULL</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -5495,8 +5351,8 @@ ON Orden.ShipVia = Shippers.ShipperID</property>
               <connections>
                 <connection
                   refId="Package\ETL Transportes\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -6127,8 +5983,8 @@ ON Orden.ShipVia = Shippers.ShipperID</property>
               <connections>
                 <connection
                   refId="Package\ETL Ventas\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.DMNorthwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -6374,8 +6230,8 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
               <connections>
                 <connection
                   refId="Package\ETL Ventas\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[WIN-EG4CTNPN6R3.Northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.Northwind]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -6656,7 +6512,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{D62C9924-6655-40F0-9518-CCACD6DAAA31}"
+          SQLTask:Connection="{CC4CD3BA-C422-4C0D-B6FC-1EEEEB686769}"
           SQLTask:SqlStatementSource="DELETE FROM FACT_VENTAS;&#xA;DELETE FROM DIM_CLIENTES;&#xA;DELETE FROM DIM_EMPLEADOS;&#xA;DELETE FROM DIM_PEDIDOS;&#xA;DELETE FROM DIM_PRODUCTOS;&#xA;DELETE FROM DIM_PROVEEDORES;&#xA;DELETE FROM DIM_TIEMPO;&#xA;DELETE FROM DIM_TERRITORIOS;&#xA;DELETE FROM DIM_TRANSPORTES;&#xA;DELETE FROM FACT_VENTAS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -6804,11 +6660,11 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="137,42"
+          Size="137.333333333334,42"
           Id="Package\ETL Clientes"
           TopLeft="151,128" />
         <NodeLayout
-          Size="151,42"
+          Size="150.666666666667,42"
           Id="Package\ETL Empleados"
           TopLeft="459,126" />
         <NodeLayout
@@ -6816,7 +6672,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
           Id="Package\ETL Pedidos"
           TopLeft="1071,126" />
         <NodeLayout
-          Size="141,42"
+          Size="141.333333333334,42"
           Id="Package\ETL Producto"
           TopLeft="5,124" />
         <NodeLayout
@@ -6824,11 +6680,11 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
           Id="Package\ETL Proveedores"
           TopLeft="293,128" />
         <NodeLayout
-          Size="143,42"
+          Size="142.666666666667,42"
           Id="Package\ETL Territorio"
           TopLeft="918,124" />
         <NodeLayout
-          Size="135,42"
+          Size="134.666666666667,42"
           Id="Package\ETL Tiempo"
           TopLeft="617,128" />
         <NodeLayout
@@ -6840,7 +6696,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
           Id="Package\ETL Ventas"
           TopLeft="468,286" />
         <NodeLayout
-          Size="113,42"
+          Size="113.333333333334,42"
           Id="Package\Limpiar"
           TopLeft="483,12" />
         <EdgeLayout
@@ -6903,6 +6759,198 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
                     Point3="-290.833333333333,28.1272365805169" />
                   <mssgle:LineSegment
                     End="-290.833333333333,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="372,170">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="141.333333333333,116"
+              Start="0,0"
+              End="141.333333333333,108.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.7664670658682" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,64.7664670658682"
+                    Point2="0,68.7664670658682"
+                    Point3="4,68.7664670658682" />
+                  <mssgle:LineSegment
+                    End="137.333333333333,68.7664670658682" />
+                  <mssgle:CubicBezierSegment
+                    Point1="137.333333333333,68.7664670658682"
+                    Point2="141.333333333333,68.7664670658682"
+                    Point3="141.333333333333,72.7664670658682" />
+                  <mssgle:LineSegment
+                    End="141.333333333333,108.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="530.805555555556,168">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,118"
+              Start="0,0"
+              End="0,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="684.5,170">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-143.611111111111,116"
+              Start="0,0"
+              End="-143.611111111111,108.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.1936056838366" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57.1936056838366"
+                    Point2="0,61.1936056838366"
+                    Point3="-4,61.1936056838366" />
+                  <mssgle:LineSegment
+                    End="-139.611111111111,61.1936056838366" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-139.611111111111,61.1936056838366"
+                    Point2="-143.611111111111,61.1936056838366"
+                    Point3="-143.611111111111,65.1936056838366" />
+                  <mssgle:LineSegment
+                    End="-143.611111111111,108.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="837,170">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-282.333333333333,116"
+              Start="0,0"
+              End="-282.333333333333,108.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.7664670658682" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,64.7664670658682"
+                    Point2="0,68.7664670658682"
+                    Point3="-4,68.7664670658682" />
+                  <mssgle:LineSegment
+                    End="-278.333333333333,68.7664670658682" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-278.333333333333,68.7664670658682"
+                    Point2="-282.333333333333,68.7664670658682"
+                    Point3="-282.333333333333,72.7664670658682" />
+                  <mssgle:LineSegment
+                    End="-282.333333333333,108.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="989.5,166">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-421.055555555556,120"
+              Start="0,0"
+              End="-421.055555555556,112.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.1845102505695" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,77.1845102505695"
+                    Point2="0,81.1845102505695"
+                    Point3="-4,81.1845102505695" />
+                  <mssgle:LineSegment
+                    End="-417.055555555556,81.1845102505695" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-417.055555555556,81.1845102505695"
+                    Point2="-421.055555555556,81.1845102505695"
+                    Point3="-421.055555555556,85.1845102505695" />
+                  <mssgle:LineSegment
+                    End="-421.055555555556,112.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="1139,168">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-556.777777777778,118"
+              Start="0,0"
+              End="-556.777777777778,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,88.9602122015915" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,88.9602122015915"
+                    Point2="0,92.9602122015915"
+                    Point3="-4,92.9602122015915" />
+                  <mssgle:LineSegment
+                    End="-552.777777777778,92.9602122015915" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-552.777777777778,92.9602122015915"
+                    Point2="-556.777777777778,92.9602122015915"
+                    Point3="-556.777777777778,96.9602122015915" />
+                  <mssgle:LineSegment
+                    End="-556.777777777778,110.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7171,198 +7219,6 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="372,170">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="141.333333333333,116"
-              Start="0,0"
-              End="141.333333333333,108.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,64.7664670658682" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,64.7664670658682"
-                    Point2="0,68.7664670658682"
-                    Point3="4,68.7664670658682" />
-                  <mssgle:LineSegment
-                    End="137.333333333333,68.7664670658682" />
-                  <mssgle:CubicBezierSegment
-                    Point1="137.333333333333,68.7664670658682"
-                    Point2="141.333333333333,68.7664670658682"
-                    Point3="141.333333333333,72.7664670658682" />
-                  <mssgle:LineSegment
-                    End="141.333333333333,108.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="530.805555555556,168">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,118"
-              Start="0,0"
-              End="0,110.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,110.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 12]"
-          TopLeft="684.5,170">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-143.611111111111,116"
-              Start="0,0"
-              End="-143.611111111111,108.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,57.1936056838366" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,57.1936056838366"
-                    Point2="0,61.1936056838366"
-                    Point3="-4,61.1936056838366" />
-                  <mssgle:LineSegment
-                    End="-139.611111111111,61.1936056838366" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-139.611111111111,61.1936056838366"
-                    Point2="-143.611111111111,61.1936056838366"
-                    Point3="-143.611111111111,65.1936056838366" />
-                  <mssgle:LineSegment
-                    End="-143.611111111111,108.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="837,170">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-282.333333333333,116"
-              Start="0,0"
-              End="-282.333333333333,108.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,64.7664670658682" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,64.7664670658682"
-                    Point2="0,68.7664670658682"
-                    Point3="-4,68.7664670658682" />
-                  <mssgle:LineSegment
-                    End="-278.333333333333,68.7664670658682" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-278.333333333333,68.7664670658682"
-                    Point2="-282.333333333333,68.7664670658682"
-                    Point3="-282.333333333333,72.7664670658682" />
-                  <mssgle:LineSegment
-                    End="-282.333333333333,108.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="989.5,166">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-421.055555555556,120"
-              Start="0,0"
-              End="-421.055555555556,112.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,77.1845102505695" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,77.1845102505695"
-                    Point2="0,81.1845102505695"
-                    Point3="-4,81.1845102505695" />
-                  <mssgle:LineSegment
-                    End="-417.055555555556,81.1845102505695" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-417.055555555556,81.1845102505695"
-                    Point2="-421.055555555556,81.1845102505695"
-                    Point3="-421.055555555556,85.1845102505695" />
-                  <mssgle:LineSegment
-                    End="-421.055555555556,112.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 15]"
-          TopLeft="1139,168">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-556.777777777778,118"
-              Start="0,0"
-              End="-556.777777777778,110.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,88.9602122015915" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,88.9602122015915"
-                    Point2="0,92.9602122015915"
-                    Point3="-4,92.9602122015915" />
-                  <mssgle:LineSegment
-                    End="-552.777777777778,92.9602122015915" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-552.777777777778,92.9602122015915"
-                    Point2="-556.777777777778,92.9602122015915"
-                    Point3="-556.777777777778,96.9602122015915" />
-                  <mssgle:LineSegment
-                    End="-556.777777777778,110.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -7372,17 +7228,17 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="171,42"
+          Size="170.666666666667,42"
           Id="Package\ETL Clientes\OLE DB Destination"
           TopLeft="611,199" />
-        <NodeLayout
-          Size="156,42"
-          Id="Package\ETL Clientes\Data Conversion"
-          TopLeft="437,159" />
         <NodeLayout
           Size="150,42"
           Id="Package\ETL Clientes\OLE DB Source"
           TopLeft="267,71" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\ETL Clientes\Data Conversion"
+          TopLeft="437,159" />
         <EdgeLayout
           Id="Package\ETL Clientes.Paths[OLE DB Source Output]"
           TopLeft="342,113">
@@ -7415,7 +7271,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
+              BoundingBox="68.27734375,28,36.4453125,9.568359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -7445,7 +7301,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
+              BoundingBox="85.27734375,-15.568359375,36.4453125,9.568359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -7477,9 +7333,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
     design-time-name="Package\ETL Empleados">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="171,42"
+          Size="170.666666666667,42"
           Id="Package\ETL Empleados\OLE DB Destination"
           TopLeft="551,159" />
         <NodeLayout
@@ -7521,7 +7377,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7555,7 +7413,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -7586,9 +7446,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
     design-time-name="Package\ETL Pedidos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="171,42"
+          Size="170.666666666667,42"
           Id="Package\ETL Pedidos\OLE DB Destination"
           TopLeft="305,217" />
         <NodeLayout
@@ -7630,7 +7490,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7664,7 +7526,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -7705,7 +7569,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
           Id="Package\ETL Producto\Data Conversion"
           TopLeft="395,145" />
         <NodeLayout
-          Size="171,42"
+          Size="170.666666666667,42"
           Id="Package\ETL Producto\OLE DB Destination"
           TopLeft="563,207" />
         <EdgeLayout
@@ -7802,9 +7666,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
     design-time-name="Package\ETL Proveedores">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="171,42"
+          Size="170.666666666667,42"
           Id="Package\ETL Proveedores\OLE DB Destination"
           TopLeft="597,181" />
         <NodeLayout
@@ -7846,7 +7710,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7880,7 +7746,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -7911,13 +7779,13 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
     design-time-name="Package\ETL Territorio">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\ETL Territorio\OLE DB Source"
           TopLeft="119,39" />
         <NodeLayout
-          Size="171,42"
+          Size="170.666666666667,42"
           Id="Package\ETL Territorio\OLE DB Destination"
           TopLeft="271,191" />
         <NodeLayout
@@ -7955,7 +7823,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7983,7 +7853,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -8014,7 +7886,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
     design-time-name="Package\ETL Tiempo">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\ETL Tiempo\OLE DB Source"
@@ -8024,7 +7896,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
           Id="Package\ETL Tiempo\Data Conversion"
           TopLeft="433,151" />
         <NodeLayout
-          Size="171,42"
+          Size="170.666666666667,42"
           Id="Package\ETL Tiempo\OLE DB Destination"
           TopLeft="597,219" />
         <EdgeLayout
@@ -8058,7 +7930,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8092,7 +7966,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -8123,7 +7999,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
     design-time-name="Package\ETL Transportes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\ETL Transportes\OLE DB Source"
@@ -8133,7 +8009,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
           Id="Package\ETL Transportes\Data Conversion"
           TopLeft="235,123" />
         <NodeLayout
-          Size="171,42"
+          Size="170.666666666667,42"
           Id="Package\ETL Transportes\OLE DB Destination"
           TopLeft="339,191" />
         <EdgeLayout
@@ -8167,7 +8043,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="34.8998828125,18,41.700234375,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8201,7 +8079,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="32.6498828125,21,41.700234375,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -8232,11 +8112,7 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
     design-time-name="Package\ETL Ventas">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="171,42"
-          Id="Package\ETL Ventas\OLE DB Destination"
-          TopLeft="353,159" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\ETL Ventas\OLE DB Source"
@@ -8245,6 +8121,10 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
           Size="156,42"
           Id="Package\ETL Ventas\Data Conversion"
           TopLeft="193,98" />
+        <NodeLayout
+          Size="170.666666666667,42"
+          Id="Package\ETL Ventas\OLE DB Destination"
+          TopLeft="353,159" />
         <EdgeLayout
           Id="Package\ETL Ventas.Paths[OLE DB Source Output]"
           TopLeft="164,58">
@@ -8276,7 +8156,9 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8304,12 +8186,22 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL Ventas\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\ETL Ventas\OLE DB Destination">
     <Properties>
@@ -8320,14 +8212,6 @@ FROM Northwind.dbo.Producto prodN INNER JOIN Northwind.dbo.Categoria catN ON (pr
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL Ventas\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
