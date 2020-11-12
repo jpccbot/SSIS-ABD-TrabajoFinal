@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="90"
-  DTS:VersionGUID="{BE5B1475-65A4-4BB9-973F-ED084DE72D29}">
+  DTS:VersionBuild="98"
+  DTS:VersionGUID="{FC55FAE0-B38B-4621-9E54-EF286312B9FC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -5206,788 +5206,6 @@ FROM Suppliers</property>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\ETL Territorio"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{DAF93488-05D1-4023-8CC8-C69D9EE757BF}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="ETL Territorio"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1">
-          <components>
-            <component
-              refId="Package\ETL Territorio\Conditional Split"
-              componentClassID="Microsoft.ConditionalSplit"
-              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
-              name="Conditional Split"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\ETL Territorio\Conditional Split.Inputs[Conditional Split Input]"
-                  description="Input to the Conditional Split Transformation"
-                  name="Conditional Split Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\ETL Territorio\Conditional Split.Inputs[Conditional Split Input].Columns[TERR_CIUDAD]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="TERR_CIUDAD"
-                      lineageId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_CIUDAD]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\ETL Territorio\Conditional Split.Outputs[Agregar]"
-                  description="Output 1 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Agregar"
-                  synchronousInputId="Package\ETL Territorio\Conditional Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[ISNULL](#{Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_CIUDAD]})</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">ISNULL(TERR_CIUDAD)</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">0</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\ETL Territorio\Conditional Split.Outputs[Conditional Split Default Output]"
-                  description="Default Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  name="Conditional Split Default Output"
-                  synchronousInputId="Package\ETL Territorio\Conditional Split.Inputs[Conditional Split Input]">
-                  <properties>
-                    <property
-                      dataType="System.Boolean"
-                      name="IsDefaultOut">true</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\ETL Territorio\Conditional Split.Outputs[Conditional Split Error Output]"
-                  description="Error Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Conditional Split Error Output"
-                  synchronousInputId="Package\ETL Territorio\Conditional Split.Inputs[Conditional Split Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\ETL Territorio\Data Conversion"
-              componentClassID="Microsoft.DataConvert"
-              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Data Conversion"
-              name="Data Conversion"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\ETL Territorio\Data Conversion.Inputs[Data Conversion Input]"
-                  name="Data Conversion Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\ETL Territorio\Data Conversion.Inputs[Data Conversion Input].Columns[TerritoryDescription]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="TerritoryDescription"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[TerritoryDescription]" />
-                    <inputColumn
-                      refId="Package\ETL Territorio\Data Conversion.Inputs[Data Conversion Input].Columns[RegionDescription]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="RegionDescription"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegionDescription]" />
-                    <inputColumn
-                      refId="Package\ETL Territorio\Data Conversion.Inputs[Data Conversion Input].Columns[Country]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="Country"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[Country]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output]"
-                  exclusionGroup="1"
-                  name="Data Conversion Output"
-                  synchronousInputId="Package\ETL Territorio\Data Conversion.Inputs[Data Conversion Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TerritoryDescription]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TerritoryDescription]"
-                      name="Copy of TerritoryDescription"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[TerritoryDescription]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RegionDescription]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RegionDescription]"
-                      name="Copy of RegionDescription"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegionDescription]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Country]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="20"
-                      lineageId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Country]"
-                      name="Copy of Country"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[Country]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Data Conversion Error Output"
-                  synchronousInputId="Package\ETL Territorio\Data Conversion.Inputs[Data Conversion Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\ETL Territorio\Lookup"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DIM_TERRITORIOS]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DIM_TERRITORIOS]) [refTable]
-where [refTable].[TERR_CIUDAD] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="TERR_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TERR_CIUDAD" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TERR_PUNTOCARDINAL" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TERR_PAIS" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TerritoryDescription]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\ETL Territorio\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\ETL Territorio\Lookup.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\ETL Territorio\Lookup.Inputs[Lookup Input].Columns[Copy of TerritoryDescription]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Copy of TerritoryDescription"
-                      lineageId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TerritoryDescription]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">TERR_CIUDAD</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="IgnoreFailure"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\ETL Territorio\Lookup.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_ID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_ID]"
-                      name="TERR_ID"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">TERR_ID</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_CIUDAD]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Copy Column"
-                      length="50"
-                      lineageId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_CIUDAD]"
-                      name="TERR_CIUDAD"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">TERR_CIUDAD</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_PUNTOCARDINAL]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Copy Column"
-                      length="50"
-                      lineageId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_PUNTOCARDINAL]"
-                      name="TERR_PUNTOCARDINAL"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">TERR_PUNTOCARDINAL</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_PAIS]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Copy Column"
-                      length="20"
-                      lineageId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output].Columns[TERR_PAIS]"
-                      name="TERR_PAIS"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">TERR_PAIS</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\ETL Territorio\Lookup.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\ETL Territorio\Lookup.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\ETL Territorio\Lookup.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\ETL Territorio\Lookup.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\ETL Territorio\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\ETL Territorio\OLE DB Destination"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE DB Destination"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[DIM_TERRITORIOS]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\ETL Territorio\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of TerritoryDescription]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Copy of TerritoryDescription"
-                      externalMetadataColumnId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERR_CIUDAD]"
-                      lineageId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TerritoryDescription]" />
-                    <inputColumn
-                      refId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of RegionDescription]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Copy of RegionDescription"
-                      externalMetadataColumnId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERR_PUNTOCARDINAL]"
-                      lineageId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RegionDescription]" />
-                    <inputColumn
-                      refId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Country]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="Copy of Country"
-                      externalMetadataColumnId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERR_PAIS]"
-                      lineageId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Country]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERR_ID]"
-                      dataType="i4"
-                      name="TERR_ID" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERR_CIUDAD]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="TERR_CIUDAD" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERR_PUNTOCARDINAL]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="TERR_PUNTOCARDINAL" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TERR_PAIS]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="TERR_PAIS" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\ETL Territorio\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\ETL Territorio\OLE DB Source"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="OLE DB Source"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  DISTINCT TerritoryDescription, RegionDescription, Employees.Country
-FROM Territories
-INNER JOIN Region
-ON Region.RegionID = Territories.RegionID
-INNER JOIN EmployeeTerritories
-ON EmployeeTerritories.TerritoryID = Territories.TerritoryID
-
-INNER JOIN Employees
-
-ON Employees.EmployeeID = EmployeeTerritories.EmployeeID</property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">2</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\ETL Territorio\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.NORTHWND]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.NORTHWND]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[TerritoryDescription]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TerritoryDescription]"
-                      length="50"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[TerritoryDescription]"
-                      name="TerritoryDescription"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegionDescription]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RegionDescription]"
-                      length="50"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegionDescription]"
-                      name="RegionDescription"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[Country]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Country]"
-                      length="15"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].Columns[Country]"
-                      name="Country"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TerritoryDescription]"
-                      dataType="wstr"
-                      length="50"
-                      name="TerritoryDescription" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RegionDescription]"
-                      dataType="wstr"
-                      length="50"
-                      name="RegionDescription" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Country]"
-                      dataType="wstr"
-                      length="15"
-                      name="Country" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TerritoryDescription]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TerritoryDescription]"
-                      name="TerritoryDescription" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RegionDescription]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RegionDescription]"
-                      name="RegionDescription" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Country]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Country]"
-                      name="Country" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\ETL Territorio.Paths[Agregar]"
-              endId="Package\ETL Territorio\OLE DB Destination.Inputs[OLE DB Destination Input]"
-              name="Agregar"
-              startId="Package\ETL Territorio\Conditional Split.Outputs[Agregar]" />
-            <path
-              refId="Package\ETL Territorio.Paths[Data Conversion Output]"
-              endId="Package\ETL Territorio\Lookup.Inputs[Lookup Input]"
-              name="Data Conversion Output"
-              startId="Package\ETL Territorio\Data Conversion.Outputs[Data Conversion Output]" />
-            <path
-              refId="Package\ETL Territorio.Paths[Lookup Match Output]"
-              endId="Package\ETL Territorio\Conditional Split.Inputs[Conditional Split Input]"
-              name="Lookup Match Output"
-              startId="Package\ETL Territorio\Lookup.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\ETL Territorio.Paths[OLE DB Source Output]"
-              endId="Package\ETL Territorio\Data Conversion.Inputs[Data Conversion Input]"
-              name="OLE DB Source Output"
-              startId="Package\ETL Territorio\OLE DB Source.Outputs[OLE DB Source Output]" />
-          </paths>
-        </pipeline>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\ETL Tiempo"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
@@ -8584,6 +7802,120 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
           version="1">
           <components>
             <component
+              refId="Package\ETL Ventas\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input].Columns[VEN_PROD_ID]"
+                      cachedDataType="i4"
+                      cachedName="VEN_PROD_ID"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PROD_ID]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input].Columns[VEN_CLI_ID]"
+                      cachedDataType="i4"
+                      cachedName="VEN_CLI_ID"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_CLI_ID]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input].Columns[VEN_EMP_ID]"
+                      cachedDataType="i4"
+                      cachedName="VEN_EMP_ID"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_EMP_ID]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input].Columns[VEN_TIME_ID]"
+                      cachedDataType="i4"
+                      cachedName="VEN_TIME_ID"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_TIME_ID]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input].Columns[VEN_PROV_ID]"
+                      cachedDataType="i4"
+                      cachedName="VEN_PROV_ID"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PROV_ID]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input].Columns[VEN_TRANS_ID]"
+                      cachedDataType="i4"
+                      cachedName="VEN_TRANS_ID"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_TRANS_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL Ventas\Conditional Split.Outputs[Agregar]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Agregar"
+                  synchronousInputId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PROD_ID]}) || [ISNULL](#{Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_CLI_ID]}) || [ISNULL](#{Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_EMP_ID]}) || [ISNULL](#{Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_TIME_ID]}) || [ISNULL](#{Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PROV_ID]}) || [ISNULL](#{Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_TRANS_ID]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(VEN_PROD_ID) || ISNULL(VEN_CLI_ID) || ISNULL(VEN_EMP_ID) || ISNULL(VEN_TIME_ID) || ISNULL(VEN_PROV_ID) || ISNULL(VEN_TRANS_ID)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL Ventas\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL Ventas\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL Ventas\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL Ventas\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL Ventas\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\ETL Ventas\Data Conversion"
               componentClassID="Microsoft.DataConvert"
               contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -8626,30 +7958,35 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
                       cachedName="TRANS_ID"
                       lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_ID]" />
                     <inputColumn
-                      refId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input].Columns[TERR_ID]"
-                      cachedDataType="i4"
-                      cachedName="TERR_ID"
-                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[TERR_ID]" />
-                    <inputColumn
-                      refId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input].Columns[PrecioNegociado]"
-                      cachedDataType="cy"
-                      cachedName="PrecioNegociado"
-                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioNegociado]" />
-                    <inputColumn
                       refId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input].Columns[Cantidad]"
                       cachedDataType="i2"
                       cachedName="Cantidad"
                       lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]" />
                     <inputColumn
+                      refId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input].Columns[GananciaFicticia]"
+                      cachedDataType="cy"
+                      cachedName="GananciaFicticia"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[GananciaFicticia]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input].Columns[GananciaReal]"
+                      cachedDataType="r4"
+                      cachedName="GananciaReal"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[GananciaReal]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input].Columns[PrecioProducto]"
+                      cachedDataType="cy"
+                      cachedName="PrecioProducto"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioProducto]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input].Columns[PrecioAcordado]"
+                      cachedDataType="cy"
+                      cachedName="PrecioAcordado"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioAcordado]" />
+                    <inputColumn
                       refId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input].Columns[Descuento]"
                       cachedDataType="r4"
                       cachedName="Descuento"
                       lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[Descuento]" />
-                    <inputColumn
-                      refId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input].Columns[PrecioTotal]"
-                      cachedDataType="r4"
-                      cachedName="PrecioTotal"
-                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioTotal]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -8788,47 +8125,6 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TERR_ID]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TERR_ID]"
-                      name="Copy of TERR_ID"
-                      precision="18"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[TERR_ID]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioNegociado]"
-                      dataType="r4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioNegociado]"
-                      name="Copy of PrecioNegociado"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioNegociado]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Cantidad]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
@@ -8843,6 +8139,86 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
                           name="SourceInputColumnLineageID">#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GananciaFicticia]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GananciaFicticia]"
+                      name="Copy of GananciaFicticia"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[GananciaFicticia]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GananciaReal]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GananciaReal]"
+                      name="Copy of GananciaReal"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[GananciaReal]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioProducto]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioProducto]"
+                      name="Copy of PrecioProducto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioProducto]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioAcordado]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioAcordado]"
+                      name="Copy of PrecioAcordado"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioAcordado]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -8869,26 +8245,6 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
                           name="FastParse">false</property>
                       </properties>
                     </outputColumn>
-                    <outputColumn
-                      refId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioTotal]"
-                      dataType="r4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioTotal]"
-                      name="Copy of PrecioTotal"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioTotal]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -8909,6 +8265,398 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
                       refId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL Ventas\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[FACT_VENTAS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[FACT_VENTAS]) [refTable]
+where [refTable].[VEN_PROD_ID] = ? and [refTable].[VEN_CLI_ID] = ? and [refTable].[VEN_EMP_ID] = ? and [refTable].[VEN_TIME_ID] = ? and [refTable].[VEN_PROV_ID] = ? and [refTable].[VEN_TRANS_ID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="VEN_PROD_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_CLI_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_EMP_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_TIME_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_PROV_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_TRANS_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_PRECIOPRODUCTO" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_GANANCIAFICTICIA" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_CANTIDAD" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_PRECIOACORDADO" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_DESCUENTO" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VEN_GANANCIA" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoID]};#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClienteID]};#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmpleadoID]};#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[TiempoID]};#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProveedorID]};#{Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_ID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL Ventas\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JLOV2OI.DMNorthwind]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL Ventas\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL Ventas\Lookup.Inputs[Lookup Input].Columns[ProductoID]"
+                      cachedDataType="i4"
+                      cachedName="ProductoID"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">VEN_PROD_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL Ventas\Lookup.Inputs[Lookup Input].Columns[ClienteID]"
+                      cachedDataType="i4"
+                      cachedName="ClienteID"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClienteID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">VEN_CLI_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL Ventas\Lookup.Inputs[Lookup Input].Columns[EmpleadoID]"
+                      cachedDataType="i4"
+                      cachedName="EmpleadoID"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmpleadoID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">VEN_EMP_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL Ventas\Lookup.Inputs[Lookup Input].Columns[TiempoID]"
+                      cachedDataType="i4"
+                      cachedName="TiempoID"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[TiempoID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">VEN_TIME_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL Ventas\Lookup.Inputs[Lookup Input].Columns[ProveedorID]"
+                      cachedDataType="i4"
+                      cachedName="ProveedorID"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProveedorID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">VEN_PROV_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL Ventas\Lookup.Inputs[Lookup Input].Columns[TRANS_ID]"
+                      cachedDataType="i4"
+                      cachedName="TRANS_ID"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_ID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">VEN_TRANS_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\ETL Ventas\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PROD_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PROD_ID]"
+                      name="VEN_PROD_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_PROD_ID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_CLI_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_CLI_ID]"
+                      name="VEN_CLI_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_CLI_ID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_EMP_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_EMP_ID]"
+                      name="VEN_EMP_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_EMP_ID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_TIME_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_TIME_ID]"
+                      name="VEN_TIME_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_TIME_ID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PROV_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PROV_ID]"
+                      name="VEN_PROV_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_PROV_ID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_TRANS_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_TRANS_ID]"
+                      name="VEN_TRANS_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_TRANS_ID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_GANANCIAFICTICIA]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_GANANCIAFICTICIA]"
+                      name="VEN_GANANCIAFICTICIA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_GANANCIAFICTICIA</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_CANTIDAD]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_CANTIDAD]"
+                      name="VEN_CANTIDAD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_CANTIDAD</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_GANANCIA]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_GANANCIA]"
+                      name="VEN_GANANCIA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_GANANCIA</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PRECIOPRODUCTO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PRECIOPRODUCTO]"
+                      name="VEN_PRECIOPRODUCTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_PRECIOPRODUCTO</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PRECIOACORDADO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_PRECIOACORDADO]"
+                      name="VEN_PRECIOACORDADO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_PRECIOACORDADO</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_DESCUENTO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output].Columns[VEN_DESCUENTO]"
+                      name="VEN_DESCUENTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">VEN_DESCUENTO</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL Ventas\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\ETL Ventas\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL Ventas\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\ETL Ventas\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL Ventas\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL Ventas\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -9031,19 +8779,6 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
                       externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_TRANS_ID]"
                       lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TRANS_ID]" />
                     <inputColumn
-                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of TERR_ID]"
-                      cachedDataType="numeric"
-                      cachedName="Copy of TERR_ID"
-                      cachedPrecision="18"
-                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_TERR_ID]"
-                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of TERR_ID]" />
-                    <inputColumn
-                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of PrecioNegociado]"
-                      cachedDataType="r4"
-                      cachedName="Copy of PrecioNegociado"
-                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_PRECIO]"
-                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioNegociado]" />
-                    <inputColumn
                       refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Cantidad]"
                       cachedDataType="numeric"
                       cachedName="Copy of Cantidad"
@@ -9051,17 +8786,35 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
                       externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_CANTIDAD]"
                       lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Cantidad]" />
                     <inputColumn
+                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of GananciaReal]"
+                      cachedDataType="r4"
+                      cachedName="Copy of GananciaReal"
+                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_GANANCIA]"
+                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GananciaReal]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of PrecioProducto]"
+                      cachedDataType="r4"
+                      cachedName="Copy of PrecioProducto"
+                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_PRECIOPRODUCTO]"
+                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioProducto]" />
+                    <inputColumn
                       refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Descuento]"
                       cachedDataType="r4"
                       cachedName="Copy of Descuento"
                       externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_DESCUENTO]"
                       lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Descuento]" />
                     <inputColumn
-                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of PrecioTotal]"
+                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of PrecioAcordado]"
                       cachedDataType="r4"
-                      cachedName="Copy of PrecioTotal"
-                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_GANANCIA]"
-                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioTotal]" />
+                      cachedName="Copy of PrecioAcordado"
+                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_PRECIOACORDADO]"
+                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PrecioAcordado]" />
+                    <inputColumn
+                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of GananciaFicticia]"
+                      cachedDataType="r4"
+                      cachedName="Copy of GananciaFicticia"
+                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_GANANCIAFICTICIA]"
+                      lineageId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GananciaFicticia]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -9090,25 +8843,29 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
                       dataType="i4"
                       name="VEN_TRANS_ID" />
                     <externalMetadataColumn
-                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_TERR_ID]"
-                      dataType="i4"
-                      name="VEN_TERR_ID" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_PRECIO]"
-                      dataType="r8"
-                      name="VEN_PRECIO" />
-                    <externalMetadataColumn
                       refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_CANTIDAD]"
                       dataType="i4"
                       name="VEN_CANTIDAD" />
                     <externalMetadataColumn
-                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_DESCUENTO]"
-                      dataType="r8"
-                      name="VEN_DESCUENTO" />
-                    <externalMetadataColumn
                       refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_GANANCIA]"
                       dataType="r8"
                       name="VEN_GANANCIA" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_GANANCIAFICTICIA]"
+                      dataType="r8"
+                      name="VEN_GANANCIAFICTICIA" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_PRECIOPRODUCTO]"
+                      dataType="r8"
+                      name="VEN_PRECIOPRODUCTO" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_PRECIOACORDADO]"
+                      dataType="r8"
+                      name="VEN_PRECIOACORDADO" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEN_DESCUENTO]"
+                      dataType="r8"
+                      name="VEN_DESCUENTO" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -9162,12 +8919,13 @@ ON Orders.ShipVia = Shippers.ShipperID</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT prodD.PROD_ID AS ProductoID, cliD.CLI_ID AS ClienteID, 
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT  prodD.PROD_ID AS ProductoID, cliD.CLI_ID AS ClienteID, 
 empD.EMP_ID AS EmpleadoID, tiD.TIME_ID AS TiempoID, provD.PROV_ID AS ProveedorID,
-transD.TRANS_ID, terrD.TERR_ID, 
- prodN.UnitPrice - detoN.UnitPrice as PrecioNegociado, detoN.Quantity AS Cantidad,
-detoN.Discount AS Descuento,
-(detoN.Quantity*detoN.UnitPrice - detoN.Quantity*detoN.UnitPrice*detoN.Discount) AS PrecioTotal
+transD.TRANS_ID,  prodN.UnitPrice as PrecioProducto,
+ prodN.UnitPrice*detoN.Quantity as GananciaFicticia, detoN.Quantity AS Cantidad,
+ detoN.UnitPrice as PrecioAcordado,
+ detoN.Discount as Descuento,
+(detoN.Quantity*detoN.UnitPrice - detoN.Quantity*detoN.UnitPrice*detoN.Discount) AS GananciaReal
 FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (prodN.CategoryID=catN.CategoryID)
 								  INNER JOIN NORTHWND.dbo.Suppliers provN ON (prodN.SupplierID=provN.SupplierID)
 								  INNER JOIN NORTHWND.dbo.[Order Details] detoN ON (prodN.ProductID=detoN.ProductID)
@@ -9183,8 +8941,7 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
 								  INNER JOIN DMNorthwind.dbo.DIM_EMPLEADOS empD ON (empD.EMP_APELLIDO=empN.LastName)
 								  INNER JOIN DMNorthwind.dbo.DIM_TIEMPO tiD ON (tiD.TIME_FECHAORDEN= CONVERT(DATE,ordN.OrderDate))
 								  INNER JOIN DMNorthwind.dbo.DIM_PROVEEDORES provD ON (provD.PROV_NOMBRECOMPANIA=provN.CompanyName)
-								  INNER JOIN DMNorthwind.dbo.DIM_TRANSPORTES transD ON (transD.TRANS_NOMBRE = ordN.ShipName)
-								  INNER JOIN DMNorthwind.dbo.DIM_TERRITORIOS terrD ON (terrD.TERR_CIUDAD = terrN.TerritoryDescription)</property>
+								  INNER JOIN DMNorthwind.dbo.DIM_TRANSPORTES transD ON (transD.TRANS_NOMBRE = ordN.ShipName)</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -9275,24 +9032,6 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
                       name="TRANS_ID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[TERR_ID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TERR_ID]"
-                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[TERR_ID]"
-                      name="TERR_ID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioNegociado]"
-                      dataType="cy"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioNegociado]"
-                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioNegociado]"
-                      name="PrecioNegociado"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]"
                       dataType="i2"
                       errorOrTruncationOperation="Conversion"
@@ -9302,6 +9041,42 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
                       name="Cantidad"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[GananciaFicticia]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GananciaFicticia]"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[GananciaFicticia]"
+                      name="GananciaFicticia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[GananciaReal]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GananciaReal]"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[GananciaReal]"
+                      name="GananciaReal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioProducto]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioProducto]"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioProducto]"
+                      name="PrecioProducto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioAcordado]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioAcordado]"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioAcordado]"
+                      name="PrecioAcordado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[Descuento]"
                       dataType="r4"
                       errorOrTruncationOperation="Conversion"
@@ -9309,15 +9084,6 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
                       externalMetadataColumnId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Descuento]"
                       lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[Descuento]"
                       name="Descuento"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioTotal]"
-                      dataType="r4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioTotal]"
-                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioTotal]"
-                      name="PrecioTotal"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -9347,25 +9113,29 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
                       dataType="i4"
                       name="TRANS_ID" />
                     <externalMetadataColumn
-                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TERR_ID]"
-                      dataType="i4"
-                      name="TERR_ID" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioNegociado]"
-                      dataType="cy"
-                      name="PrecioNegociado" />
-                    <externalMetadataColumn
                       refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
                       dataType="i2"
                       name="Cantidad" />
                     <externalMetadataColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GananciaFicticia]"
+                      dataType="cy"
+                      name="GananciaFicticia" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GananciaReal]"
+                      dataType="r4"
+                      name="GananciaReal" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioProducto]"
+                      dataType="cy"
+                      name="PrecioProducto" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioAcordado]"
+                      dataType="cy"
+                      name="PrecioAcordado" />
+                    <externalMetadataColumn
                       refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Descuento]"
                       dataType="r4"
                       name="Descuento" />
-                    <externalMetadataColumn
-                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioTotal]"
-                      dataType="r4"
-                      name="PrecioTotal" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -9404,30 +9174,35 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
                       lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANS_ID]"
                       name="TRANS_ID" />
                     <outputColumn
-                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TERR_ID]"
-                      dataType="i4"
-                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TERR_ID]"
-                      name="TERR_ID" />
-                    <outputColumn
-                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioNegociado]"
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioProducto]"
                       dataType="cy"
-                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioNegociado]"
-                      name="PrecioNegociado" />
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioProducto]"
+                      name="PrecioProducto" />
+                    <outputColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GananciaFicticia]"
+                      dataType="cy"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GananciaFicticia]"
+                      name="GananciaFicticia" />
                     <outputColumn
                       refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
                       dataType="i2"
                       lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
                       name="Cantidad" />
                     <outputColumn
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioAcordado]"
+                      dataType="cy"
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioAcordado]"
+                      name="PrecioAcordado" />
+                    <outputColumn
                       refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Descuento]"
                       dataType="r4"
                       lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Descuento]"
                       name="Descuento" />
                     <outputColumn
-                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioTotal]"
+                      refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GananciaReal]"
                       dataType="r4"
-                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioTotal]"
-                      name="PrecioTotal" />
+                      lineageId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GananciaReal]"
+                      name="GananciaReal" />
                     <outputColumn
                       refId="Package\ETL Ventas\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -9448,10 +9223,20 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
           </components>
           <paths>
             <path
-              refId="Package\ETL Ventas.Paths[Data Conversion Output]"
+              refId="Package\ETL Ventas.Paths[Agregar]"
               endId="Package\ETL Ventas\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Agregar"
+              startId="Package\ETL Ventas\Conditional Split.Outputs[Agregar]" />
+            <path
+              refId="Package\ETL Ventas.Paths[Data Conversion Output]"
+              endId="Package\ETL Ventas\Lookup.Inputs[Lookup Input]"
               name="Data Conversion Output"
               startId="Package\ETL Ventas\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\ETL Ventas.Paths[Lookup Match Output]"
+              endId="Package\ETL Ventas\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\ETL Ventas\Lookup.Outputs[Lookup Match Output]" />
             <path
               refId="Package\ETL Ventas.Paths[OLE DB Source Output]"
               endId="Package\ETL Ventas\Data Conversion.Inputs[Data Conversion Input]"
@@ -9461,41 +9246,8 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Limpiar"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{C77B3033-BE56-40D5-9F34-876D8445FE88}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Limpiar"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{86EC9EA8-A786-4BB6-9CE9-349A5800595E}"
-          SQLTask:SqlStatementSource="DELETE FROM FACT_VENTAS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint]"
-      DTS:CreationName=""
-      DTS:DTSID="{78F151C9-F116-48E9-9650-D64404157272}"
-      DTS:From="Package\Limpiar"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint"
-      DTS:To="Package\ETL Producto" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
-      DTS:CreationName=""
-      DTS:DTSID="{800B67B7-F73D-4F11-B27B-5B7B13EDE6BE}"
-      DTS:From="Package\Limpiar"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 1"
-      DTS:To="Package\ETL Clientes" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
       DTS:CreationName=""
@@ -9529,54 +9281,6 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
       DTS:ObjectName="Constraint 13"
       DTS:To="Package\ETL Ventas" />
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
-      DTS:CreationName=""
-      DTS:DTSID="{86154FFB-6E93-44F1-B0DA-F7E89F49F4C4}"
-      DTS:From="Package\ETL Territorio"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 14"
-      DTS:To="Package\ETL Ventas" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{71DE7720-C53C-4697-B29C-1E0C2B6DA69F}"
-      DTS:From="Package\Limpiar"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 2"
-      DTS:To="Package\ETL Proveedores" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
-      DTS:CreationName=""
-      DTS:DTSID="{B75F73D1-5B07-4A9B-AA2E-5D5B6394AD43}"
-      DTS:From="Package\Limpiar"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 3"
-      DTS:To="Package\ETL Empleados" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
-      DTS:CreationName=""
-      DTS:DTSID="{2DA34028-7032-4F5A-99B4-C41251BD9874}"
-      DTS:From="Package\Limpiar"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 4"
-      DTS:To="Package\ETL Tiempo" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
-      DTS:CreationName=""
-      DTS:DTSID="{2479B59E-5AB9-48A0-97CB-22446A6171AB}"
-      DTS:From="Package\Limpiar"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 5"
-      DTS:To="Package\ETL Territorio" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
-      DTS:CreationName=""
-      DTS:DTSID="{74D4ACBB-318E-4D93-BAA2-028719E34D72}"
-      DTS:From="Package\Limpiar"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 6"
-      DTS:To="Package\ETL Transportes" />
-    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
       DTS:CreationName=""
       DTS:DTSID="{6EB92B75-4E00-4B67-AD0E-8D00B7EB9ABD}"
@@ -9604,7 +9308,7 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="137.333333333334,42"
           Id="Package\ETL Clientes"
@@ -9622,17 +9326,13 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
           Id="Package\ETL Proveedores"
           TopLeft="293,128" />
         <NodeLayout
-          Size="144,42.6666666666667"
-          Id="Package\ETL Territorio"
-          TopLeft="773.000002160668,129.199999907017" />
-        <NodeLayout
           Size="136,42.6666666666667"
           Id="Package\ETL Tiempo"
           TopLeft="617,128" />
         <NodeLayout
           Size="156,42"
           Id="Package\ETL Transportes"
-          TopLeft="925.249997522682,129.299999976754" />
+          TopLeft="788.999999552965,126.700000023246" />
         <NodeLayout
           Size="132,42"
           Id="Package\ETL Ventas"
@@ -9729,64 +9429,30 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="1003.24999752268,171.299999976754">
+          TopLeft="866.999999552965,168.700000023246">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-439.805553003732,117.333333333333"
+              EndConnector="-293.714285192745,119.933333286841"
               Start="0,0"
-              End="-439.805553003732,109.833333333333">
+              End="-293.714285192745,112.433333286841">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,75.3804100227787" />
+                    End="0,86.2429967076884" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,75.3804100227787"
-                    Point2="0,79.3804100227787"
-                    Point3="-4,79.3804100227787" />
+                    Point1="0,86.2429967076884"
+                    Point2="0,90.2429967076884"
+                    Point3="-4,90.2429967076884" />
                   <mssgle:LineSegment
-                    End="-435.805553003732,79.3804100227787" />
+                    End="-289.714285192745,90.2429967076884" />
                   <mssgle:CubicBezierSegment
-                    Point1="-435.805553003732,79.3804100227787"
-                    Point2="-439.805553003732,79.3804100227787"
-                    Point3="-439.805553003732,83.3804100227787" />
+                    Point1="-289.714285192745,90.2429967076884"
+                    Point2="-293.714285192745,90.2429967076884"
+                    Point3="-293.714285192745,94.2429967076884" />
                   <mssgle:LineSegment
-                    End="-439.805553003732,109.833333333333" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="845.000002160668,171.866666573683">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-295.333335419496,116.766666736404"
-              Start="0,0"
-              End="-295.333335419496,109.266666736404">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,65.2209581251733" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,65.2209581251733"
-                    Point2="0,69.2209581251733"
-                    Point3="-4,69.2209581251733" />
-                  <mssgle:LineSegment
-                    End="-291.333335419496,69.2209581251733" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-291.333335419496,69.2209581251733"
-                    Point2="-295.333335419496,69.2209581251733"
-                    Point3="-295.333335419496,73.2209581251733" />
-                  <mssgle:LineSegment
-                    End="-295.333335419496,109.266666736404" />
+                    End="-293.714285192745,112.433333286841" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9855,255 +9521,6 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
                     Point3="274.888888963394,84.2599088681002" />
                   <mssgle:LineSegment
                     End="274.888888963394,111.133333310087" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <AnnotationLayout
-          Text="s"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="34.6666666666667,40"
-          Id="fa4b71e3-8cdd-49fc-a6c4-acff3f6df5d9"
-          TopLeft="763.124988628552,282.099994955659" />
-        <NodeLayout
-          Size="114.666666666667,42.6666666666667"
-          Id="Package\Limpiar"
-          TopLeft="278.124995855615,31.8499994304776" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="295.458329188948,74.5166660971443">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-219.124995855615,49.4833339028557"
-              Start="0,0"
-              End="-219.124995855615,41.9833339028557">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,7.48720251316293" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,7.48720251316293"
-                    Point2="0,11.4872025131629"
-                    Point3="-4,11.4872025131629" />
-                  <mssgle:LineSegment
-                    End="-215.124995855615,11.4872025131629" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-215.124995855615,11.4872025131629"
-                    Point2="-219.124995855615,11.4872025131629"
-                    Point3="-219.124995855615,15.4872025131629" />
-                  <mssgle:LineSegment
-                    End="-219.124995855615,41.9833339028557" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="308.791662522281,74.5166660971443">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-89.1249958556145,53.4833339028557"
-              Start="0,0"
-              End="-89.1249958556145,45.9833339028557">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,14.6381315116012" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.6381315116012"
-                    Point2="0,18.6381315116012"
-                    Point3="-4,18.6381315116012" />
-                  <mssgle:LineSegment
-                    End="-85.1249958556145,18.6381315116012" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-85.1249958556145,18.6381315116012"
-                    Point2="-89.1249958556145,18.6381315116012"
-                    Point3="-89.1249958556145,22.6381315116012" />
-                  <mssgle:LineSegment
-                    End="-89.1249958556145,45.9833339028557" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="322.124995855615,74.5166660971443">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="49.8750041443855,53.4833339028557"
-              Start="0,0"
-              End="49.8750041443855,45.9833339028557">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.2230265630821" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.2230265630821"
-                    Point2="0,23.2230265630821"
-                    Point3="4,23.2230265630821" />
-                  <mssgle:LineSegment
-                    End="45.8750041443855,23.2230265630821" />
-                  <mssgle:CubicBezierSegment
-                    Point1="45.8750041443855,23.2230265630821"
-                    Point2="49.8750041443855,23.2230265630821"
-                    Point3="49.8750041443855,27.2230265630821" />
-                  <mssgle:LineSegment
-                    End="49.8750041443855,45.9833339028557" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="335.458329188948,74.5166660971443">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="199.541670811052,51.4833339028557"
-              Start="0,0"
-              End="199.541670811052,43.9833339028557">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.7416669514279" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.7416669514279"
-                    Point2="0,25.7416669514279"
-                    Point3="4,25.7416669514279" />
-                  <mssgle:LineSegment
-                    End="195.541670811052,25.7416669514279" />
-                  <mssgle:CubicBezierSegment
-                    Point1="195.541670811052,25.7416669514279"
-                    Point2="199.541670811052,25.7416669514279"
-                    Point3="199.541670811052,29.7416669514279" />
-                  <mssgle:LineSegment
-                    End="199.541670811052,43.9833339028557" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="348.791662522281,74.5166660971443">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="336.208337477719,53.4833339028557"
-              Start="0,0"
-              End="336.208337477719,45.9833339028557">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.2230265630821" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.2230265630821"
-                    Point2="0,23.2230265630821"
-                    Point3="4,23.2230265630821" />
-                  <mssgle:LineSegment
-                    End="332.208337477719,23.2230265630821" />
-                  <mssgle:CubicBezierSegment
-                    Point1="332.208337477719,23.2230265630821"
-                    Point2="336.208337477719,23.2230265630821"
-                    Point3="336.208337477719,27.2230265630821" />
-                  <mssgle:LineSegment
-                    End="336.208337477719,45.9833339028557" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="362.124995855615,74.5166660971443">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="482.875006305053,54.6833338098727"
-              Start="0,0"
-              End="482.875006305053,47.1833338098727">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.0563132973799" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.0563132973799"
-                    Point2="0,19.0563132973799"
-                    Point3="4,19.0563132973799" />
-                  <mssgle:LineSegment
-                    End="478.875006305053,19.0563132973799" />
-                  <mssgle:CubicBezierSegment
-                    Point1="478.875006305053,19.0563132973799"
-                    Point2="482.875006305053,19.0563132973799"
-                    Point3="482.875006305053,23.0563132973799" />
-                  <mssgle:LineSegment
-                    End="482.875006305053,47.1833338098727" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="375.458329188948,74.5166660971443">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="627.791668333734,54.7833338796097"
-              Start="0,0"
-              End="627.791668333734,47.2833338796097">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,8.71755965062365" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,8.71755965062365"
-                    Point2="0,12.7175596506237"
-                    Point3="4,12.7175596506237" />
-                  <mssgle:LineSegment
-                    End="623.791668333734,12.7175596506237" />
-                  <mssgle:CubicBezierSegment
-                    Point1="623.791668333734,12.7175596506237"
-                    Point2="627.791668333734,12.7175596506237"
-                    Point3="627.791668333734,16.7175596506236" />
-                  <mssgle:LineSegment
-                    End="627.791668333734,47.2833338796097" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10207,7 +9624,9 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10271,7 +9690,9 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10327,17 +9748,25 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="170.666666666667,42"
-          Id="Package\ETL Empleados\OLE DB Destination"
-          TopLeft="627,265" />
+          Size="150,42"
+          Id="Package\ETL Empleados\OLE DB Source"
+          TopLeft="227,35" />
         <NodeLayout
           Size="156,42"
           Id="Package\ETL Empleados\Data Conversion"
           TopLeft="335,137" />
         <NodeLayout
-          Size="150,42"
-          Id="Package\ETL Empleados\OLE DB Source"
-          TopLeft="227,35" />
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\ETL Empleados\Lookup"
+          TopLeft="335,219" />
+        <NodeLayout
+          Size="170.666666666667,42"
+          Id="Package\ETL Empleados\OLE DB Destination"
+          TopLeft="627,265" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\ETL Empleados\Conditional Split"
+          TopLeft="633,191" />
         <EdgeLayout
           Id="Package\ETL Empleados.Paths[OLE DB Source Output]"
           TopLeft="302,77">
@@ -10364,48 +9793,6 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
                     Point3="111,34" />
                   <mssgle:LineSegment
                     End="111,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="113.333333333334,42.6666666666667"
-          Id="Package\ETL Empleados\Lookup"
-          TopLeft="335,219" />
-        <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\ETL Empleados\Conditional Split"
-          TopLeft="633,191" />
-        <EdgeLayout
-          Id="Package\ETL Empleados.Paths[Data Conversion Output]"
-          TopLeft="413,179">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-21.3333333333333,40"
-              Start="0,0"
-              End="-21.3333333333333,32.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16"
-                    Point2="0,20"
-                    Point3="-4,20" />
-                  <mssgle:LineSegment
-                    End="-17.3333333333333,20" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-17.3333333333333,20"
-                    Point2="-21.3333333333333,20"
-                    Point3="-21.3333333333333,24" />
-                  <mssgle:LineSegment
-                    End="-21.3333333333333,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10451,6 +9838,40 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\ETL Empleados.Paths[Data Conversion Output]"
+          TopLeft="413,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.3333333333333,40"
+              Start="0,0"
+              End="-21.3333333333333,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="-4,20" />
+                  <mssgle:LineSegment
+                    End="-17.3333333333333,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.3333333333333,20"
+                    Point2="-21.3333333333333,20"
+                    Point3="-21.3333333333333,24" />
+                  <mssgle:LineSegment
+                    End="-21.3333333333333,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\ETL Empleados.Paths[Agregar]"
           TopLeft="711.666666666667,233.666666666667">
           <EdgeLayout.Curve>
@@ -10470,7 +9891,7 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-18.3867578125,6.24869791666667,36.773515625,11.3359375"
+              BoundingBox="-18.3867578125,6.24869791666665,36.773515625,11.3359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -10498,6 +9919,29 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL Empleados\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_EMPLEADOS]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\ETL Producto">
     <LayoutInfo>
@@ -10518,7 +9962,7 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
         <NodeLayout
           Size="156,42.6666666666667"
           Id="Package\ETL Producto\Conditional Split"
-          TopLeft="367.041661237056,229.283331903716" />
+          TopLeft="371.041661237056,201.283331903716" />
         <NodeLayout
           Size="150,42"
           Id="Package\ETL Producto\OLE DB Source"
@@ -10554,32 +9998,36 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL Producto.Paths[Lookup Match Output]"
-          TopLeft="441.874994458631,181.649999291003">
+          TopLeft="495.374994346872,160.316665957669">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47.6333326127132"
+              EndConnector="-46.3333331098163,40.9666659460466"
               Start="0,0"
-              End="0,40.1333326127132">
+              End="-46.3333331098163,33.4666659460466">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.1333326127132" />
+                    End="-42.3333331098163,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-42.3333331098163,0"
+                    Point2="-46.3333331098163,0"
+                    Point3="-46.3333331098163,4" />
+                  <mssgle:LineSegment
+                    End="-46.3333331098163,33.4666659460466" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,14.2619788063566,96.3827734375,11.609375"
+              BoundingBox="-94.5247198285663,-17.609375,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -10602,44 +10050,42 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL Producto.Paths[Agregar]"
-          TopLeft="445.041661237056,271.949998570383">
+          TopLeft="449.041661237056,243.949998570383">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="77.6250074412671,24.7499998256569"
+              EndConnector="73.625007441267,52.7499998256564"
               Start="0,0"
-              End="77.6250074412671,17.2499998256569">
+              End="73.625007441267,45.2499998256564">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,8.37499991282843" />
+                    End="0,22.3749999128282" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,8.37499991282843"
-                    Point2="0,12.3749999128284"
-                    Point3="4,12.3749999128284" />
+                    Point1="0,22.3749999128282"
+                    Point2="0,26.3749999128282"
+                    Point3="4,26.3749999128282" />
                   <mssgle:LineSegment
-                    End="73.6250074412671,12.3749999128284" />
+                    End="69.625007441267,26.3749999128282" />
                   <mssgle:CubicBezierSegment
-                    Point1="73.6250074412671,12.3749999128284"
-                    Point2="77.6250074412671,12.3749999128284"
-                    Point3="77.6250074412671,16.3749999128284" />
+                    Point1="69.625007441267,26.3749999128282"
+                    Point2="73.625007441267,26.3749999128282"
+                    Point3="73.625007441267,30.3749999128282" />
                   <mssgle:LineSegment
-                    End="77.6250074412671,17.2499998256569" />
+                    End="73.625007441267,45.2499998256564" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="20.4257459081336,17.3749999128284,36.773515625,11.3359375"
+              BoundingBox="18.4257459081335,31.3749999128282,36.773515625,11.3359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -10696,17 +10142,25 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="172,42.6666666666667"
-          Id="Package\ETL Proveedores\OLE DB Destination"
-          TopLeft="594,279" />
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\ETL Proveedores\OLE DB Source"
+          TopLeft="109,0.999999999999986" />
         <NodeLayout
           Size="157.333333333334,42.6666666666667"
           Id="Package\ETL Proveedores\Data Conversion"
           TopLeft="251.333333333333,87" />
         <NodeLayout
-          Size="150.666666666667,42.6666666666667"
-          Id="Package\ETL Proveedores\OLE DB Source"
-          TopLeft="109,0.999999999999986" />
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\ETL Proveedores\Lookup"
+          TopLeft="362,173.666666666667" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\ETL Proveedores\OLE DB Destination"
+          TopLeft="594,279" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\ETL Proveedores\Conditional Split"
+          TopLeft="578,175.666666666667" />
         <EdgeLayout
           Id="Package\ETL Proveedores.Paths[OLE DB Source Output]"
           TopLeft="184.333333333333,43.6666666666667">
@@ -10738,17 +10192,35 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="113.333333333334,42.6666666666667"
-          Id="Package\ETL Proveedores\Lookup"
-          TopLeft="362,173.666666666667" />
-        <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\ETL Proveedores\Conditional Split"
-          TopLeft="578,175.666666666667" />
+        <EdgeLayout
+          Id="Package\ETL Proveedores.Paths[Lookup Match Output]"
+          TopLeft="475.333333333333,196">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102.666666666667,0"
+              Start="0,0"
+              End="95.1666666666667,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="95.1666666666667,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-0.608053385416632,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL Proveedores.Paths[Data Conversion Output]"
           TopLeft="330,129.666666666667">
@@ -10780,30 +10252,8 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL Proveedores.Paths[Lookup Match Output]"
-          TopLeft="475.333333333333,196">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="102.666666666667,0"
-              Start="0,0"
-              End="95.1666666666667,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="95.1666666666667,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-0.608053385416632,5,96.3827734375,11.609375"
+              BoundingBox="0,0,0,0"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -10867,190 +10317,24 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\ETL Territorio">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="170.666666666667,42"
-          Id="Package\ETL Territorio\OLE DB Destination"
-          TopLeft="475,325" />
-        <NodeLayout
-          Size="157.333333333334,42.6666666666667"
-          Id="Package\ETL Territorio\Data Conversion"
-          TopLeft="186,141" />
-        <NodeLayout
-          Size="150,42"
-          Id="Package\ETL Territorio\OLE DB Source"
-          TopLeft="119,39" />
-        <EdgeLayout
-          Id="Package\ETL Territorio.Paths[OLE DB Source Output]"
-          TopLeft="194,81">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="70.6666666666667,60"
-              Start="0,0"
-              End="70.6666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="66.6666666666667,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="66.6666666666667,30"
-                    Point2="70.6666666666667,30"
-                    Point3="70.6666666666667,34" />
-                  <mssgle:LineSegment
-                    End="70.6666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="113.333333333334,42.6666666666667"
-          Id="Package\ETL Territorio\Lookup"
-          TopLeft="269,221" />
-        <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\ETL Territorio\Conditional Split"
-          TopLeft="497,187" />
-        <EdgeLayout
-          Id="Package\ETL Territorio.Paths[Data Conversion Output]"
-          TopLeft="264.666666666667,183.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="61,37.3333333333333"
-              Start="0,0"
-              End="61,29.8333333333333">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,14.6666666666667" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.6666666666667"
-                    Point2="0,18.6666666666667"
-                    Point3="4,18.6666666666667" />
-                  <mssgle:LineSegment
-                    End="57,18.6666666666667" />
-                  <mssgle:CubicBezierSegment
-                    Point1="57,18.6666666666667"
-                    Point2="61,18.6666666666667"
-                    Point3="61,22.6666666666667" />
-                  <mssgle:LineSegment
-                    End="61,29.8333333333333" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL Territorio.Paths[Lookup Match Output]"
-          TopLeft="382.333333333333,242.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="114.666666666667,-34"
-              Start="0,0"
-              End="107.166666666667,-34">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="53.3333333333333,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="53.3333333333333,0"
-                    Point2="57.3333333333333,0"
-                    Point3="57.3333333333333,-4" />
-                  <mssgle:LineSegment
-                    End="57.3333333333333,-30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="57.3333333333333,-30"
-                    Point2="57.3333333333333,-34"
-                    Point3="61.3333333333333,-34" />
-                  <mssgle:LineSegment
-                    End="107.166666666667,-34" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="9.14194661458334,1,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\ETL Territorio.Paths[Agregar]"
-          TopLeft="575,229.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-14.6666666666665,95.3333333333333"
-              Start="0,0"
-              End="-14.6666666666665,87.8333333333333">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,43.6666666666667" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,43.6666666666667"
-                    Point2="0,47.6666666666667"
-                    Point3="-4,47.6666666666667" />
-                  <mssgle:LineSegment
-                    End="-10.6666666666665,47.6666666666667" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-10.6666666666665,47.6666666666667"
-                    Point2="-14.6666666666665,47.6666666666667"
-                    Point3="-14.6666666666665,51.6666666666667" />
-                  <mssgle:LineSegment
-                    End="-14.6666666666665,87.8333333333333" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-25.7200911458333,52.6666666666667,36.773515625,11.3359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL Territorio\OLE DB Destination">
+    design-time-name="Package\ETL Proveedores\Lookup">
     <Properties>
       <Property>
-        <Name>DataSourceViewID</Name>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_PROVEEDORES]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q2:string">Table</Value>
+          type="q4:string">0</Value>
       </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL Territorio\OLE DB Source">
-    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -11062,17 +10346,25 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="172,42.6666666666667"
-          Id="Package\ETL Tiempo\OLE DB Destination"
-          TopLeft="198.74999480322,336.349995594919" />
+          Size="150,42"
+          Id="Package\ETL Tiempo\OLE DB Source"
+          TopLeft="271,51" />
         <NodeLayout
           Size="157.333333333334,42.6666666666667"
           Id="Package\ETL Tiempo\Data Conversion"
           TopLeft="403.749993983656,144.949997408092" />
         <NodeLayout
-          Size="150,42"
-          Id="Package\ETL Tiempo\OLE DB Source"
-          TopLeft="271,51" />
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\ETL Tiempo\Lookup"
+          TopLeft="555,224.333333333333" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\ETL Tiempo\OLE DB Destination"
+          TopLeft="198.74999480322,336.349995594919" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\ETL Tiempo\Conditional Split"
+          TopLeft="483,336.333333333333" />
         <EdgeLayout
           Id="Package\ETL Tiempo.Paths[OLE DB Source Output]"
           TopLeft="346,93">
@@ -11104,49 +10396,9 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="113.333333333334,42.6666666666667"
-          Id="Package\ETL Tiempo\Lookup"
-          TopLeft="555,224.333333333333" />
-        <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\ETL Tiempo\Conditional Split"
-          TopLeft="483,336.333333333333" />
-        <EdgeLayout
-          Id="Package\ETL Tiempo.Paths[Data Conversion Output]"
-          TopLeft="482.416660650323,187.616664074759">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="129.250006016344,36.7166692585747"
-              Start="0,0"
-              End="129.250006016344,29.2166692585747">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,14.3583346292873" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.3583346292873"
-                    Point2="0,18.3583346292873"
-                    Point3="4,18.3583346292873" />
-                  <mssgle:LineSegment
-                    End="125.250006016344,18.3583346292873" />
-                  <mssgle:CubicBezierSegment
-                    Point1="125.250006016344,18.3583346292873"
-                    Point2="129.250006016344,18.3583346292873"
-                    Point3="129.250006016344,22.3583346292873" />
-                  <mssgle:LineSegment
-                    End="129.250006016344,29.2166692585747" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -11182,6 +10434,42 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-73.5247200520833,39.6666666666666,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL Tiempo.Paths[Data Conversion Output]"
+          TopLeft="482.416660650323,187.616664074759">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="129.250006016344,36.7166692585747"
+              Start="0,0"
+              End="129.250006016344,29.2166692585747">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.3583346292873" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.3583346292873"
+                    Point2="0,18.3583346292873"
+                    Point3="4,18.3583346292873" />
+                  <mssgle:LineSegment
+                    End="125.250006016344,18.3583346292873" />
+                  <mssgle:CubicBezierSegment
+                    Point1="125.250006016344,18.3583346292873"
+                    Point2="129.250006016344,18.3583346292873"
+                    Point3="129.250006016344,22.3583346292873" />
+                  <mssgle:LineSegment
+                    End="129.250006016344,29.2166692585747" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -11233,6 +10521,29 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL Tiempo\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_TIEMPO]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\ETL Transportes">
     <LayoutInfo>
@@ -11243,13 +10554,21 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
           Id="Package\ETL Transportes\OLE DB Source"
           TopLeft="131,49" />
         <NodeLayout
+          Size="156,42"
+          Id="Package\ETL Transportes\Data Conversion"
+          TopLeft="235,123" />
+        <NodeLayout
           Size="170.666666666667,42"
           Id="Package\ETL Transportes\OLE DB Destination"
           TopLeft="503,261" />
         <NodeLayout
-          Size="156,42"
-          Id="Package\ETL Transportes\Data Conversion"
-          TopLeft="235,123" />
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\ETL Transportes\Lookup"
+          TopLeft="333,191" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\ETL Transportes\Conditional Split"
+          TopLeft="517,179" />
         <EdgeLayout
           Id="Package\ETL Transportes.Paths[OLE DB Source Output]"
           TopLeft="206,91">
@@ -11281,49 +10600,9 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="113.333333333334,42.6666666666667"
-          Id="Package\ETL Transportes\Lookup"
-          TopLeft="333,191" />
-        <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\ETL Transportes\Conditional Split"
-          TopLeft="517,179" />
-        <EdgeLayout
-          Id="Package\ETL Transportes.Paths[Data Conversion Output]"
-          TopLeft="313,165">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="76.6666666666667,26"
-              Start="0,0"
-              End="76.6666666666667,18.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,8.99999999999999" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,8.99999999999999"
-                    Point2="0,13"
-                    Point3="4,13" />
-                  <mssgle:LineSegment
-                    End="72.6666666666667,13" />
-                  <mssgle:CubicBezierSegment
-                    Point1="72.6666666666667,13"
-                    Point2="76.6666666666667,13"
-                    Point3="76.6666666666667,17" />
-                  <mssgle:LineSegment
-                    End="76.6666666666667,18.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -11363,6 +10642,42 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\ETL Transportes.Paths[Data Conversion Output]"
+          TopLeft="313,165">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76.6666666666667,26"
+              Start="0,0"
+              End="76.6666666666667,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.99999999999999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.99999999999999"
+                    Point2="0,13"
+                    Point3="4,13" />
+                  <mssgle:LineSegment
+                    End="72.6666666666667,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="72.6666666666667,13"
+                    Point2="76.6666666666667,13"
+                    Point3="76.6666666666667,17" />
+                  <mssgle:LineSegment
+                    End="76.6666666666667,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\ETL Transportes.Paths[Agregar]"
           TopLeft="591.666666666667,221.666666666667">
           <EdgeLayout.Curve>
@@ -11398,6 +10713,29 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\ETL Transportes\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_TRANSPORTES]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\ETL Transportes\OLE DB Destination">
     <Properties>
       <Property>
@@ -11414,45 +10752,125 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
     design-time-name="Package\ETL Ventas">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="170.666666666667,42"
           Id="Package\ETL Ventas\OLE DB Destination"
-          TopLeft="401,283.666666666667" />
-        <NodeLayout
-          Size="157.333333333334,42.6666666666667"
-          Id="Package\ETL Ventas\Data Conversion"
-          TopLeft="204,131" />
+          TopLeft="251.000002235174,221.266667782466" />
         <NodeLayout
           Size="150,42"
           Id="Package\ETL Ventas\OLE DB Source"
           TopLeft="53,1.4210854715202E-14" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\ETL Ventas\Lookup"
+          TopLeft="301.874995501712,90.9499988028407" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\ETL Ventas\Conditional Split"
+          TopLeft="501.87499252148,105.249998547137" />
+        <EdgeLayout
+          Id="Package\ETL Ventas.Paths[Lookup Match Output]"
+          TopLeft="415.208328835045,112.283332136174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86.6666636864344,14.2999997442961"
+              Start="0,0"
+              End="79.1666636864344,14.2999997442961">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="39.3333318432172,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.3333318432172,0"
+                    Point2="43.3333318432172,0"
+                    Point3="43.3333318432172,4" />
+                  <mssgle:LineSegment
+                    End="43.3333318432172,10.2999997442961" />
+                  <mssgle:CubicBezierSegment
+                    Point1="43.3333318432172,10.2999997442961"
+                    Point2="43.3333318432172,14.2999997442961"
+                    Point3="47.3333318432172,14.2999997442961" />
+                  <mssgle:LineSegment
+                    End="79.1666636864344,14.2999997442961" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-4.85805487553278,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL Ventas.Paths[Agregar]"
+          TopLeft="579.87499252148,147.916665213803">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-243.541656952972,73.3500025686625"
+              Start="0,0"
+              End="-243.541656952972,65.8500025686625">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.6750012843312" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.6750012843312"
+                    Point2="0,36.6750012843312"
+                    Point3="-4,36.6750012843312" />
+                  <mssgle:LineSegment
+                    End="-239.541656952972,36.6750012843312" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-239.541656952972,36.6750012843312"
+                    Point2="-243.541656952972,36.6750012843312"
+                    Point3="-243.541656952972,40.6750012843312" />
+                  <mssgle:LineSegment
+                    End="-243.541656952972,65.8500025686625" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-140.157586288986,41.6750012843312,36.773515625,11.3359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\ETL Ventas\Data Conversion"
+          TopLeft="139.128786600336,86.8636348103935" />
         <EdgeLayout
           Id="Package\ETL Ventas.Paths[OLE DB Source Output]"
           TopLeft="128,42">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="154.666666666667,89"
+              EndConnector="89.7954532670027,44.8636348103935"
               Start="0,0"
-              End="154.666666666667,81.5">
+              End="89.7954532670027,37.3636348103935">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.5" />
+                    End="0,18.4318174051968" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,40.5"
-                    Point2="0,44.5"
-                    Point3="4,44.5" />
+                    Point1="0,18.4318174051968"
+                    Point2="0,22.4318174051968"
+                    Point3="4,22.4318174051968" />
                   <mssgle:LineSegment
-                    End="150.666666666667,44.5" />
+                    End="85.7954532670027,22.4318174051968" />
                   <mssgle:CubicBezierSegment
-                    Point1="150.666666666667,44.5"
-                    Point2="154.666666666667,44.5"
-                    Point3="154.666666666667,48.5" />
+                    Point1="85.7954532670027,22.4318174051968"
+                    Point2="89.7954532670027,22.4318174051968"
+                    Point3="89.7954532670027,26.4318174051968" />
                   <mssgle:LineSegment
-                    End="154.666666666667,81.5" />
+                    End="89.7954532670027,37.3636348103935" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11463,30 +10881,30 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL Ventas.Paths[Data Conversion Output]"
-          TopLeft="282.666666666667,173.666666666667">
+          TopLeft="242.684342155892,86.8636348103935">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="203.666666666667,110"
+              EndConnector="115.857320012487,4.0863639924472"
               Start="0,0"
-              End="203.666666666667,102.5">
+              End="115.857320012487,-3.4136360075528">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,51.0000000000002" />
+                    End="0,-18.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,51.0000000000002"
-                    Point2="0,55.0000000000002"
-                    Point3="4,55.0000000000002" />
+                    Point1="0,-18.5"
+                    Point2="0,-22.5"
+                    Point3="4,-22.5" />
                   <mssgle:LineSegment
-                    End="199.666666666667,55.0000000000002" />
+                    End="111.857320012487,-22.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="199.666666666667,55.0000000000002"
-                    Point2="203.666666666667,55.0000000000002"
-                    Point3="203.666666666667,59.0000000000002" />
+                    Point1="111.857320012487,-22.5"
+                    Point2="115.857320012487,-22.5"
+                    Point3="115.857320012487,-18.5" />
                   <mssgle:LineSegment
-                    End="203.666666666667,102.5" />
+                    End="115.857320012487,-3.4136360075528" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11520,7 +10938,7 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL Proveedores\Lookup">
+    design-time-name="Package\ETL Ventas\Lookup">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -11530,99 +10948,7 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DIM_PROVEEDORES]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL Empleados\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_EMPLEADOS]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL Tiempo\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_TIEMPO]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL Territorio\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_TERRITORIOS]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL Transportes\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_TRANSPORTES]</Value>
+          type="q3:string">[dbo].[FACT_VENTAS]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
