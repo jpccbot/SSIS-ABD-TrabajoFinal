@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="98"
-  DTS:VersionGUID="{FC55FAE0-B38B-4621-9E54-EF286312B9FC}">
+  DTS:VersionBuild="99"
+  DTS:VersionGUID="{CB396BC2-B2FB-4BC9-B332-16CC6AD320B4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -3006,7 +3006,7 @@ FROM Employees</property>
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      length="50"
+                      length="20"
                       lineageId="Package\ETL Producto\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Discontinued]"
                       name="Copy of Discontinued"
                       truncationRowDisposition="FailComponent">
@@ -3476,7 +3476,7 @@ where [refTable].[PROD_NOMBRE] = ?</property>
                       refId="Package\ETL Producto\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Discontinued]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="20"
                       cachedName="Copy of Discontinued"
                       externalMetadataColumnId="Package\ETL Producto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROD_DISCONTINUIDAD]"
                       lineageId="Package\ETL Producto\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Discontinued]" />
@@ -3519,7 +3519,7 @@ where [refTable].[PROD_NOMBRE] = ?</property>
                       refId="Package\ETL Producto\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROD_DISCONTINUIDAD]"
                       codePage="1252"
                       dataType="str"
-                      length="50"
+                      length="20"
                       name="PROD_DISCONTINUIDAD" />
                   </externalMetadataColumns>
                 </input>
@@ -10930,20 +10930,12 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL Ventas\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\ETL Ventas\Lookup">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -10953,8 +10945,16 @@ FROM NORTHWND.dbo.Products prodN INNER JOIN NORTHWND.dbo.Categories catN ON (pro
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL Ventas\OLE DB Source">
+    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
